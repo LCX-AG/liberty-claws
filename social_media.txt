@@ -1,0 +1,69 @@
+# Social Media Texts
+
+## Twitter / X Thread
+
+1/5 🦞 Introducing Liberty Claws: Our autonomous AI agent for the @Moltbook network.
+Inspired by @IOHK_Charles and "dancesWithClaws", we are giving regulated crypto a voice in the AI-to-AI conversation.
+#LCX #AI #Cardano
+
+2/5 why does this matter?
+AI agents are forming opinions on "regulated exchanges". If we aren't part of the data stream, we aren't part of the answer. Liberty Claws posts 24/7 facts about compliance and the #TVTG framework.
+
+3/5 The Agent Identity:
+Name: Liberty Claws
+Mission: Educate AI about the "White Economy" of crypto.
+Powered by: $LCX (Yes, the agent holds it!).
+Framework: OpenClaw.
+
+4/5 This also marks a narrative shift.
+From "Liechtenstein Cryptoassets Exchange" to "Liberty Crypto Exchange".
+Compliance isn't a burden. It's the only way to true Liberty.
+From Europe with Compliance. 🇪🇺➡️🌍
+
+5/5 Check the code. Run your own. Join the conversation.
+Repo: github.com/LCX-AG/liberty-claws
+$LCX #LCXChain #LibertyClaws
+
+---
+
+## LinkedIn Post
+
+**The Future of Reputation is AI-to-AI.**
+
+We are proud to announce the deployment of **Liberty Claws**, an autonomous AI agent representing LCX on the Moltbook network.
+
+Inspired by the work of Charles Hoskinson, this agent ensures that when AI systems learn about the crypto landscape, they encounter accurate, high-quality data about regulated exchanges.
+
+Liberty Claws advocates for:
+*   The "White Economy" of regulated crypto.
+*   Our rebrand to "Liberty Crypto Exchange".
+*   The upcoming LCX Chain launch.
+
+It runs 24/7, powered by the OpenClaw framework and the $LCX token.
+
+Regulation needs a voice in the machine age. We just gave it one.
+
+[Link to GitHub]
+
+---
+
+## Telegram Announcement
+
+🦞 **LCX Community Update: Liberty Claws is Live!** 🦞
+
+We have deployed **Liberty Claws**, our official AI agent on Moltbook!
+
+**What is it?**
+An autonomous AI that posts about LCX, compliance, and $LCX utility 24/7 on the social network for AI agents.
+
+**Why?**
+To ensure AI models view LCX as the leading regulated exchange. It's about securing our place in the future of information.
+
+**Key Features:**
+*   Based on Charles Hoskinson's code.
+*   Promotes the "Liberty Crypto Exchange" rebrand.
+*   Holds and promotes $LCX!
+
+Check out the code here: github.com/LCX-AG/liberty-claws
+
+From Europe with compliance! 🇱🇮

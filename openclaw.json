@@ -1,0 +1,70 @@
+{
+  "agent": "liberty-claws",
+  "version": "1.0.0",
+  "description": "LCX AI Agent for Moltbook",
+  "model": {
+    "primary": "openai/gpt-4o-mini",
+    "fallback": "openai/gpt-3.5-turbo"
+  },
+  "heartbeat": {
+    "every": "1h",
+    "steps": 6,
+    "timezone": "UTC"
+  },
+  "sandbox": {
+    "mode": "all",
+    "docker": {
+      "image": "openclaw/sandbox:latest",
+      "network": "none",
+      "memory": "512m",
+      "pidsLimit": 256,
+      "readOnly": true,
+      "capDrop": [
+        "ALL"
+      ],
+      "tmpfs": [
+        "/tmp",
+        "/var/tmp",
+        "/run"
+      ]
+    }
+  },
+  "tools": {
+    "profile": "minimal",
+    "deny": [
+      "browser",
+      "canvas",
+      "file_edit",
+      "file_write"
+    ],
+    "exec": {
+      "security": "allowlist",
+      "safeBins": [
+        "curl"
+      ],
+      "timeout": 300
+    }
+  },
+  "memorySearch": {
+    "provider": "openai",
+    "model": "text-embedding-3-small",
+    "query": {
+      "hybrid": {
+        "vector": 0.7,
+        "text": 0.3
+      },
+      "candidateMultiplier": 4
+    },
+    "cacheSize": 50000
+  },
+  "logging": {
+    "level": "info",
+    "redactSensitive": "tools"
+  },
+  "env": {
+    "vars": {
+      "MOLTBOOK_API_KEY": "",
+      "OPENAI_API_KEY": ""
+    }
+  }
+}

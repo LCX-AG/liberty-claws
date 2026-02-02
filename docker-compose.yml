@@ -1,0 +1,40 @@
+services:
+  liberty-claws:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: liberty-claws
+    # Run as the host user so bind-mounted ./state and ./logs are writable
+    # even with cap_drop: ALL.
+    user: "${OPENCLAW_UID:-1000}:${OPENCLAW_GID:-1000}"
+    restart: unless-stopped
+    environment:
+      - MOLTBOOK_API_KEY=${MOLTBOOK_API_KEY}
+      - MOLTBOOK_SUBMOLT=${MOLTBOOK_SUBMOLT}
+      - MOLTBOOK_TITLE_PREFIX=${MOLTBOOK_TITLE_PREFIX}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - NODE_ENV=production
+      - NODE_OPTIONS=--max-old-space-size=1536
+      - OPENCLAW_STATE_DIR=/app/state
+      - OPENCLAW_CONFIG_PATH=/app/openclaw.gateway.json5
+      - OPENCLAW_GATEWAY_TOKEN=${OPENCLAW_GATEWAY_TOKEN}
+    volumes:
+      - ./workspace:/app/workspace:ro
+      - ./logs:/app/logs
+      - ./state:/app/state
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/tmp
+      - /run
+    cap_drop:
+      - ALL
+    mem_limit: 2048m
+    pids_limit: 256
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

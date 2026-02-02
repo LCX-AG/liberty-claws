@@ -1,0 +1,40 @@
+.env
+.env.*
+!.env.example
+
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build / coverage
+dist/
+build/
+coverage/
+.nyc_output/
+
+# Runtime state & logs (bind-mounted volumes)
+state/
+logs/
+
+# OpenClaw local state (if created outside docker)
+.openclaw/
+
+# Temp / scratch
+tmp/
+*.tmp
+*.swp
+*.swo
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Terraform / misc (safe defaults)
+.terraform/
+*.tfstate
+*.tfstate.*
