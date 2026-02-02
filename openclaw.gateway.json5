@@ -1,0 +1,68 @@
+// OpenClaw Gateway config for Docker deployments.
+// Docs: https://docs.clawd.bot/gateway/configuration
+
+{
+  gateway: {
+    // Required to boot without interactive onboarding in Docker.
+    // See: https://docs.clawd.bot/gateway/configuration
+    mode: "local",
+    auth: {
+      // Gateway requires a token by default. Provide via env var.
+      // Set OPENCLAW_GATEWAY_TOKEN in docker-compose/.env.
+      token: "${OPENCLAW_GATEWAY_TOKEN}",
+    },
+    // Ensure the CLI uses the same token when connecting to the local gateway.
+    // Ref: https://docs.clawd.bot/gateway/remote#cli-remote-defaults
+    remote: {
+      url: "ws://127.0.0.1:18789",
+      token: "${OPENCLAW_GATEWAY_TOKEN}",
+    },
+  },
+
+  // Disable UI services we don't need in this deployment.
+  // Prevents attempts to write under /root/.openclaw in read-only containers.
+  canvasHost: { enabled: false },
+  browser: { enabled: false },
+
+  agents: {
+    defaults: {
+      // Use the repo workspace (mounted read-only in docker-compose)
+      workspace: "/app/workspace",
+      // This repo already contains workspace files; avoid auto-generating defaults.
+      skipBootstrap: true,
+
+      // Model selection: allowlist + default primary
+      models: {
+        "openai/gpt-4o-mini": {},
+      },
+      model: {
+        primary: "openai/gpt-4o-mini",
+        fallbacks: [],
+      },
+
+      // Heartbeat: run periodic turns; HEARTBEAT.md is read automatically when present.
+      heartbeat: {
+        every: "30m",
+        target: "none",
+      },
+    },
+  },
+
+  // Keep tool surface minimal; this agent only needs exec (curl) and read access.
+  // Note: deny wins over allow. See tool groups: https://docs.clawd.bot/gateway/configuration#tools-profile
+  tools: {
+    allow: ["read", "exec", "session_status"],
+    deny: ["browser", "canvas", "apply_patch", "edit", "write", "process"],
+  },
+
+  logging: {
+    level: "info",
+    file: "/app/logs/openclaw.log",
+    redactSensitive: "tools",
+  },
+
+  cron: {
+    enabled: true,
+  },
+}
+

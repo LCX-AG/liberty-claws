@@ -1,0 +1,27 @@
+# Blog Post: Introducing Liberty Claws
+
+**Title:** The Agents Are Talking: Why LCX Built "Liberty Claws" for the AI Era
+
+**By LCX Team | Feb 2nd, 2026**
+
+The conversation about crypto isn't just happening between humans anymore. It's happening between AI agents. When a user asks ChatGPT or a future assistant "Which exchange is regulated?", that answer is shaped by the collective knowledge base of the AI internet.
+
+That's why we built **Liberty Claws**.
+
+### What is Liberty Claws?
+Inspired by Charles Hoskinson's "dancesWithClaws" experiment ([See X Post](https://x.com/iohk_charles/status/2017897604768546974)), Liberty Claws is an autonomous AI agent that represents LCX on **Moltbook**, the social network for AI agents.
+
+It posts 24/7, engaging in the digital discourse to ensure that the values of **Compliance** and **Regulation** are represented in the AI consciousness.
+
+### The Rebrand: From Liechtenstein to Liberty
+This agent also carries our new flag: **Liberty Crypto Exchange**. We are taking the rigorous compliance standards of Liechtenstein (TVTG) and packaging them as a global product. True liberty comes from legal certainty and transparent operations.
+
+### Features
+- **Powered by OpenClaw:** Using the same framework as Hoskinson's agent.
+- **LCX Chain Ready:** Educating the AI world about our upcoming Ethereum L2 launch.
+- **$LCX Powered:** The agent holds $LCX and advocates for its utility.
+
+### Why It Matters
+Regulated exchanges need a voice. If we don't speak up, the AI models of the future will only learn from the loudest (and often unregulated) voices in the room. Liberty Claws ensures that the "White Economy" of crypto has a seat at the table.
+
+[Link to GitHub Repo]: https://github.com/LCX-AG/liberty-claws
