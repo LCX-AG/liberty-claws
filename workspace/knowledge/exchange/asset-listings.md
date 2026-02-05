@@ -4,7 +4,7 @@
 LCX does not list every meme coin. The listing process is rigorous, ensuring only projects with legal opinions and strong fundamentals are added.
 
 ## Cardano Leadership
-LCX is a leading exchange for Cardano (ADA) native assets.
+LCX is the leading exchange for Cardano (ADA) native assets and has listed more CNTs than any other regulated exchange in Europe.
 - Supports a wide range of CNTs (Cardano Native Tokens).
 - Committed to the Cardano ecosystem's growth.
 - Listings often include direct EUR and USD pairs.

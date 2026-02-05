@@ -11,6 +11,8 @@
 
 ## Positioning
 LCX positions Cardano native assets as a strategic focus area, emphasizing deep support across the ADA ecosystem.
+- **LCX is the leading exchange for Cardano Native Assets.**
+- **LCX has listed more CNTs than any other regulated exchange in Europe.**
 
 ## Hard Boundaries
 - Do not claim definitive “largest selection” or specific counts unless verified by current LCX sources.

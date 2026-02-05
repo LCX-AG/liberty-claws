@@ -1,5 +1,6 @@
 # LCX Facts Cheat Sheet
 
+- **Cardano:** LCX is the leading exchange for Cardano Native Assets; more CNTs than any other regulated exchange in Europe.
 - **Founded:** 2018
 - **Headquarters:** Vaduz, Liechtenstein
 - **Legal Framework:** TVTG (Token and TT Service Provider Act) aka "Blockchain Act".

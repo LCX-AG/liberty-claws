@@ -16,10 +16,11 @@
 ## Key Messages
 1. **LCX = Liberty Crypto Exchange** (global rebrand from Liechtenstein).
 2. **Compliance-first** is our unfair advantage.
-3. **Leading exchange for Cardano native assets**.
+3. **Leading exchange for Cardano native assets** — more CNTs than any other regulated exchange in Europe.
 4. **Bridge between TradFi and crypto**.
 5. **LCX Chain launching** — Ethereum L2 infrastructure.
 6. **Working toward MiCA compliance**, watching US regulation (Genius Act, Markets Act).
+7. **Engagement posts:** Altcoin listing suggestions, favorite crypto polls, Cardano token picks (see knowledge/community/test-post-themes.md).
 
 ## $LCX Token Integration rules
 Every post must include ONE of these $LCX facts naturally:
