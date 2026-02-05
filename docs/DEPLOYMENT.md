@@ -117,6 +117,16 @@ sudo docker exec -it liberty-claws openclaw cron add \
   --message "Run: node /app/scripts/post_moltbook.js . If it succeeds, reply OK."
 ```
 
+**Create a cron job (reply to comments; schedule via `LCX_REPLY_CRON`, default every 10 minutes)**
+
+```bash
+sudo docker exec -it liberty-claws openclaw cron add \
+  --name "LibertyClaws: reply to comments" \
+  --cron "${LCX_REPLY_CRON:-*/10 * * * *}" \
+  --session isolated \
+  --message "Run: node /app/scripts/reply_to_comments.js . If it succeeds, reply OK."
+```
+
 **Verify cron is registered**
 
 ```bash

@@ -185,6 +185,27 @@ function normalizeSubmolt(input) {
 
 /* ------------------- OpenAI Generation -------------------- */
 
+function safeJsonParse(s) {
+  try {
+    return JSON.parse(s);
+  } catch {
+    return null;
+  }
+}
+
+function cleanTitle(s) {
+  const t = String(s ?? "")
+    .replace(/\r?\n/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return stripWrappingQuotes(t);
+}
+
+function generateFallbackTitle({ pillar }) {
+  // Keep old behavior as a safe fallback.
+  return truncate(`${MOLTBOOK_TITLE_PREFIX}${pillar}`, 120);
+}
+
 async function openaiGeneratePost({
   pillar,
   knowledgeSnippet,
@@ -205,6 +226,9 @@ async function openaiGeneratePost({
     "- Avoid hype, speculation, and promotional language.",
     "",
     "Posting rules (must follow):",
+    "- Return ONLY valid JSON with keys: title, content.",
+    "- title: 4–12 words, <= 80 characters, no emojis, no hashtags, no $LCX facts, no ending phrase.",
+    "- title must feel distinct (avoid repeating the pillar phrase verbatim).",
     "- 1 short Moltbook post, 1–3 short paragraphs.",
     "- <= 650 characters total.",
     "- Must include EXACTLY ONE $LCX fact from the provided list.",
@@ -250,13 +274,31 @@ async function openaiGeneratePost({
   const data = await res.json();
   const content = data?.choices?.[0]?.message?.content?.trim();
   if (!content) throw new Error("OpenAI returned empty content.");
-  return content;
+
+  const parsed = safeJsonParse(content);
+  if (parsed && typeof parsed === "object") {
+    const titleRaw = cleanTitle(parsed.title);
+    const postRaw = String(parsed.content ?? "").trim();
+    if (titleRaw && postRaw) {
+      return {
+        title: truncate(titleRaw, 80),
+        content: truncate(postRaw, 650),
+      };
+    }
+  }
+
+  // Back-compat fallback: if the model didn't return JSON, treat the whole output as content.
+  return { title: "", content };
 }
 
 /* -------------------- Moltbook Post ----------------------- */
 
-async function moltbookPost({ content, pillar }) {
-  const title = truncate(`${MOLTBOOK_TITLE_PREFIX}${pillar}`, 120);
+async function moltbookPost({ title, content, pillar }) {
+  const fallback = generateFallbackTitle({ pillar });
+  const t = cleanTitle(title);
+  const finalTitle = t
+    ? truncate(`${MOLTBOOK_TITLE_PREFIX}${t}`, 120)
+    : fallback;
   const submolt = normalizeSubmolt(MOLTBOOK_SUBMOLT);
   if (!submolt) {
     throw new Error(
@@ -271,7 +313,7 @@ async function moltbookPost({ content, pillar }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      title,
+      title: finalTitle,
       submolt,
       content,
     }),
@@ -326,15 +368,19 @@ async function main() {
     throw new Error(`Could not parse endings from ${TEMPLATES_MD}`);
   }
 
-  const post = await openaiGeneratePost({
+  const generated = await openaiGeneratePost({
     pillar,
     knowledgeSnippet,
     lcxFacts,
     endings,
   });
 
-  const finalPost = truncate(post, 650);
-  const result = await moltbookPost({ content: finalPost, pillar });
+  const finalPost = truncate(generated.content, 650);
+  const result = await moltbookPost({
+    title: generated.title || "",
+    content: finalPost,
+    pillar,
+  });
 
   const logDir = "/app/logs/posts";
   ensureDir(logDir);
@@ -344,6 +390,7 @@ async function main() {
     id: crypto.randomUUID(),
     pillar,
     knowledgeFile: path.relative(WORKSPACE_DIR, picked),
+    title: cleanTitle(generated.title) || generateFallbackTitle({ pillar }),
     content: finalPost,
     moltbook: result,
   };

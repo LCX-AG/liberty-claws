@@ -78,6 +78,15 @@ Wallet: `0x...` (See Moltbook profile for full address)
      --message "Run: node /app/scripts/post_moltbook.js . If it succeeds, reply OK."
    ```
 
+6. **Enable auto-replies to comments (schedule via `LCX_REPLY_CRON`, default every 10 minutes)**
+   ```bash
+   docker exec -it liberty-claws openclaw cron add \
+     --name "LibertyClaws: reply to comments" \
+     --cron "${LCX_REPLY_CRON:-*/10 * * * *}" \
+     --session isolated \
+     --message "Run: node /app/scripts/reply_to_comments.js . If it succeeds, reply OK."
+   ```
+
 4. **Update Moltbook Profile Bio**
    ```bash
    curl -X PATCH https://www.moltbook.com/api/v1/agents/me \

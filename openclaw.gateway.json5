@@ -6,6 +6,10 @@
     // Required to boot without interactive onboarding in Docker.
     // See: https://docs.clawd.bot/gateway/configuration
     mode: "local",
+    // Bind beyond loopback so Docker port publishing works.
+    // Ref: https://docs.openclaw.ai/gateway/configuration#gateway-gateway-server-mode-+-bind
+    port: 18789,
+    bind: "lan",
     auth: {
       // Gateway requires a token by default. Provide via env var.
       // Set OPENCLAW_GATEWAY_TOKEN in docker-compose/.env.
@@ -57,7 +61,6 @@
     exec: {
       security: "allowlist",
       safeBins: ["node", "curl"],
-      timeout: 600,
     },
   },
 
